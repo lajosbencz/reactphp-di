@@ -1,0 +1,21 @@
+{
+  "name": "lajosbencz/react-di",
+  "description": "Promise based Dependency Injection for ReactPHP",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Lajos Bencz",
+      "email": "lazos@lazos.me"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "react/promise": "^2.7.1",
+    "react/event-loop": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "ReactDi\\": "src/ReactDi/"
+    }
+  }
+}
