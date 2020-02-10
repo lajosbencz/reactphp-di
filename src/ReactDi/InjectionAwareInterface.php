@@ -5,7 +5,7 @@ namespace ReactDi;
 
 interface InjectionAwareInterface
 {
-    public function setDI(ContainerInterface $container): void;
+    public function setDependencyContainer(ContainerInterface $container): void;
 
-    public function getDI(): ContainerInterface;
+    public function getDependencyContainer(): ContainerInterface;
 }

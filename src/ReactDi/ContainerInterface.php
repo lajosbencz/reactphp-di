@@ -7,7 +7,7 @@ use React\Promise\PromiseInterface;
 
 interface ContainerInterface
 {
-    static function getDefault(): ?ContainerInterface;
+    static function getDefault(): ContainerInterface;
 
     static function reset(): void;
 
