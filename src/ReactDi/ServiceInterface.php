@@ -3,7 +3,7 @@
 namespace ReactDi;
 
 
-use React\Promise\Promise;
+use React\Promise\PromiseInterface;
 
 interface ServiceInterface
 {
@@ -17,5 +17,5 @@ interface ServiceInterface
 
     function isResolved(): bool;
 
-    function resolve(array $args=[], ?ContainerInterface $di=null): Promise;
+    function resolve(array $args=[], ?ContainerInterface $di=null): PromiseInterface;
 }

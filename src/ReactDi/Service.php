@@ -3,7 +3,7 @@
 namespace ReactDi;
 
 
-use React\Promise\Promise;
+use React\Promise\PromiseInterface;
 
 class Service implements ServiceInterface
 {
@@ -43,12 +43,12 @@ class Service implements ServiceInterface
         return isset($this->_resolved);
     }
 
-    public function resolve(array $args = [], ?ContainerInterface $di = null): Promise
+    public function resolve(array $args = [], ?ContainerInterface $di = null): PromiseInterface
     {
         if(!$this->isResolved()) {
             $def = \Closure::bind($this->_definition, $di);
             $res = $def(...$args);
-            if($res instanceof ServiceProviderInterface) {
+            if($di && $res instanceof ServiceProviderInterface) {
                 $res->register($di);
             }
             $this->_resolved = $res;
