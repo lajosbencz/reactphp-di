@@ -16,19 +16,12 @@ class Container implements ContainerInterface
     /** @var ServiceInterface[] */
     protected $_services = [];
 
-    public function __construct(?LoopInterface $loop=null)
+    public function __construct(?LoopInterface $loop = null)
     {
+        if (!isset(self::$_default)) {
+            self::$_default = $this;
+        }
         $this->setLoop($loop ?? Factory::create());
-    }
-
-    public function getLoop(): LoopInterface
-    {
-        return $this->_loop;
-    }
-
-    public function setLoop(LoopInterface $loop): void
-    {
-        $this->_loop = $loop;
     }
 
     public static function getDefault(): ?ContainerInterface
@@ -44,6 +37,16 @@ class Container implements ContainerInterface
     public static function setDefault(ContainerInterface $container): void
     {
         self::$_default = $container;
+    }
+
+    public function getLoop(): LoopInterface
+    {
+        return $this->_loop;
+    }
+
+    public function setLoop(LoopInterface $loop): void
+    {
+        $this->_loop = $loop;
     }
 
     public function attempt(string $name, $definition, bool $shared = false): ?ServiceInterface
