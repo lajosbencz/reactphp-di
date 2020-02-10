@@ -2,6 +2,7 @@
   "name": "lajosbencz/react-di",
   "description": "Promise based Dependency Injection for ReactPHP",
   "license": "GPL-3.0-or-later",
+  "type": "library",
   "authors": [
     {
       "name": "Lajos Bencz",
