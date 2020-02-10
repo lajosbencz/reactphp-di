@@ -18,25 +18,29 @@ class Container implements ContainerInterface
 
     public function __construct(?LoopInterface $loop = null)
     {
-        if (!isset(self::$_default)) {
-            self::$_default = $this;
+        if (!isset(static::$_default)) {
+            static::$_default = $this;
         }
         $this->setLoop($loop ?? Factory::create());
     }
 
-    public static function getDefault(): ?ContainerInterface
+    public static function getDefault(): ContainerInterface
     {
-        return self::$_default;
+        if(!isset(static::$_default)) {
+            $c = new static();
+            static::setDefault($c);
+        }
+        return static::$_default;
     }
 
     public static function reset(): void
     {
-        self::$_default = null;
+        static::$_default = null;
     }
 
     public static function setDefault(ContainerInterface $container): void
     {
-        self::$_default = $container;
+        static::$_default = $container;
     }
 
     public function getLoop(): LoopInterface

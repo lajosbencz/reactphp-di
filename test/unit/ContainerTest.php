@@ -8,19 +8,21 @@ class ContainerTest extends TestCase
     public function testDefault()
     {
         $c1 = new Container;
-        $d = Container::getDefault();
-        $this->assertSame($c1, $d);
+        $d1 = Container::getDefault();
+        $this->assertSame($c1, $d1);
 
         $c2 = new Container;
-        $this->assertNotSame($c2, $d);
+        $this->assertNotSame($c2, $d1);
 
         Container::setDefault($c2);
-        $d = Container::getDefault();
-        $this->assertNotSame($c1, $d);
-        $this->assertSame($c2, $d);
+        $d2 = Container::getDefault();
+        $this->assertNotSame($c1, $d2);
+        $this->assertSame($c2, $d2);
 
         Container::reset();
-        $this->assertNull(Container::getDefault());
+        $d3 = Container::getDefault();
+        $this->assertNotSame($c1, $d3);
+        $this->assertNotSame($c2, $d3);
     }
 
     public function testContainer()
