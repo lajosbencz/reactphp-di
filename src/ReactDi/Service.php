@@ -48,7 +48,7 @@ class Service implements ServiceInterface
         if(!$this->isResolved()) {
             $def = \Closure::bind($this->_definition, $di);
             $res = $def(...$args);
-            if($res instanceof ServiceProviderInterface) {
+            if($di && $res instanceof ServiceProviderInterface) {
                 $res->register($di);
             }
             $this->_resolved = $res;
